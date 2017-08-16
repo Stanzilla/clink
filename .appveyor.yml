@@ -25,18 +25,7 @@ configuration:
   - Release
 
 build:
-  project: .build/$(TOOLSET)/clink.sln
-
-after_build:
   - premake5.exe clink_release
 
-artifacts:
-  - path: .build\$(TOOLSET)\bin\$(configuration)\
-    type: zip
-    name: clink_$(APPVEYOR_BUILD_VERSION)
-
-  # - path: clink_0.4.9-{build}_pdb.zip
-  #   name: clink_0.4.9-{build}_pdb.zip
-
-  # - path: clink_0.4.9-{build}_setup.exe
-  #   name: clink_0.4.9-{build}_setup.exe
+after_build:
+   - ps: Get-ChildItem .\*.zip | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
