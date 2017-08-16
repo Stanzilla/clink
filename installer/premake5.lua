@@ -34,6 +34,7 @@ end
 
 --------------------------------------------------------------------------------
 local function mkdir(dir)
+    print(dir)
     if os.isdir(dir) then
         return
     end
@@ -84,6 +85,7 @@ local function get_target_dir()
     local target_dir = ".build/release/"
     target_dir = target_dir .. os.date("%Y%m%d_")
     target_dir = target_dir .. get_last_git_commit()
+    print(target_dir)
     if clink_ver ~= "DEV" then
         target_dir = target_dir .. "_" .. clink_ver
     end
