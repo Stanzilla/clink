@@ -35,11 +35,12 @@ end
 --------------------------------------------------------------------------------
 function get_last_git_commit()
     local git_cmd = "git log -1 --format=oneline --no-color 2>nul"
+    print(git_cmd)
     for line in io.popen(git_cmd):lines() do
         return line:sub(1, 6)
     end
 
-    return "?"
+    return "unknown"
 end
 
 --------------------------------------------------------------------------------
