@@ -24,8 +24,8 @@ configuration:
   - Debug
   - Release
 
-build:
-  - premake5.exe clink_release
+before_build:
+  - PS: premake5.exe clink_release
 
-after_build:
+build:
    - ps: Get-ChildItem .\*.zip | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
